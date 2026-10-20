@@ -1,0 +1,52 @@
+name: Build macOS App
+
+# 触发方式：
+#   1. 在 GitHub 网页上进入 Actions 页，选这个 workflow，点 "Run workflow"
+#   2. 或者 push 一个 v 开头的 tag（如 v2.0.0）
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-mac:
+    # GitHub 提供的 macOS 云机器（Apple Silicon）
+    runs-on: macos-14
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: PyInstaller 打包
+        run: |
+          pyinstaller IBDspider_mac.spec --noconfirm
+
+      - name: Ad-hoc 签名（免开发者账号，规避"已损坏"提示）
+        run: |
+          codesign --deep --force --sign - "dist/IBD Spider.app" || true
+          echo "签名完成"
+
+      - name: 打包成 zip
+        run: |
+          cd dist
+          ditto -c -k --keepParent "IBD Spider.app" "IBD-Spider-mac.zip"
+          ls -lh "IBD-Spider-mac.zip"
+
+      - name: 上传产物（可在 Actions 页面下载）
+        uses: actions/upload-artifact@v4
+        with:
+          name: IBD-Spider-mac
+          path: dist/IBD-Spider-mac.zip
+          retention-days: 30

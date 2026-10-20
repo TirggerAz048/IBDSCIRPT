@@ -1,0 +1,33 @@
+# ── 打包产物 ──
+build/
+dist/
+*.spec.bak
+
+# ── Python 缓存 ──
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+
+# ── 项目运行时数据（体积大、含业务数据，不要上传）──
+cache/
+results/
+workers/results/
+*.xlsx
+debug.log
+
+# ── 反编译恢复工具（历史遗留，不需要）──
+_recovery/
+
+# ── 打包配置里没有的多余 exe ──
+*.exe
+
+# ── 系统/编辑器 ──
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

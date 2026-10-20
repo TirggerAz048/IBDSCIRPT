@@ -1,0 +1,16 @@
+# IBD Spider 运行依赖
+# 安装：pip install -r requirements.txt
+# Python 版本：3.10 ~ 3.12（PyQt6-WebEngine 暂不支持 3.13）
+
+PyQt6>=6.5,<7
+PyQt6-WebEngine>=6.5,<7
+PyQt6-Fluent-Widgets>=1.5,<2
+
+requests>=2.28
+beautifulsoup4>=4.11
+lxml>=4.9
+PyMuPDF>=1.23
+openpyxl>=3.1
+
+# 打包工具（仅在需要生成可执行文件时安装）
+# pyinstaller>=6.0
