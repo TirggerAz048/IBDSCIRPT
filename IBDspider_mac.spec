@@ -112,7 +112,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='mian.ico',
+    icon='mian.icns',
 )
 
 coll = COLLECT(
@@ -127,7 +127,7 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='IBD Spider.app',
-    icon='mian.ico',
+    icon='mian.icns',
     bundle_identifier='com.ibdspider.app',
     info_plist={
         'CFBundleName': 'IBD Spider',

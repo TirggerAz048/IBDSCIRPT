@@ -12,8 +12,5 @@ lxml>=4.9
 PyMuPDF>=1.23
 openpyxl>=3.1
 
-# macOS 打包时把 mian.ico 自动转成 .icns（PyInstaller BUNDLE 必需）
-Pillow>=10.0
-
 # 打包工具（仅在需要生成可执行文件时安装）
 # pyinstaller>=6.0
